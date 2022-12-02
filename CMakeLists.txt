@@ -34,8 +34,18 @@ if (NOT FUSE3_FOUND)
     message(FATAL_ERROR "Fatal error: Fuse required.")
 endif (NOT FUSE3_FOUND)
 
+if(NOT TARGET spdlog)
+    # Stand-alone build
+    find_package(spdlog REQUIRED)
+endif()
+
+if(NOT TARGET yaml-cpp)
+    # Stand-alone build
+    find_package(yaml-cpp REQUIRED)
+endif()
+
 include_directories(${TOPDIR}/include                    
-                    ${CMAKE_CURRENT_BINARY_DIR}
+                    ${CMAKE_CURRENT_BINARY_DIR}/libmcmq
                     )
                     
 add_subdirectory(libmcmq)

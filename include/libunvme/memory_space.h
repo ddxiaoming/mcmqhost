@@ -13,9 +13,7 @@ public:
     struct MemoryNotAvailable : public virtual std::runtime_error {
         MemoryNotAvailable() : std::runtime_error("") {}
     };
-
-    virtual ~MemorySpace() {}
-
+    virtual ~MemorySpace() = default;
     Address allocate(size_t len, size_t align = 1);
     Address allocate_pages(size_t len);
     void free(Address addr, size_t len);

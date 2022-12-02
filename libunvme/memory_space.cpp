@@ -7,7 +7,7 @@
 
 namespace fs = std::filesystem;
 
-#define roundup(x, align) \
+#define my_roundup(x, align) \
     (((x) % align == 0) ? (x) : (((x) + align) - ((x) % align)))
 
 MemorySpace::MemorySpace(Address iova_base) : iova_base(iova_base)
@@ -87,7 +87,7 @@ MemorySpace::Address MemorySpace::allocate(size_t len, size_t align)
 
 MemorySpace::Address MemorySpace::allocate_pages(size_t len)
 {
-    return allocate(roundup(len, 0x1000), 0x1000);
+    return allocate(my_roundup(len, 0x1000), 0x1000);
 }
 
 void MemorySpace::free(Address addr, size_t len)
@@ -126,7 +126,7 @@ void MemorySpace::free(Address addr, size_t len)
 
 void MemorySpace::free_pages(Address addr, size_t len)
 {
-    free(addr, roundup(len, 0x1000));
+    free(addr, my_roundup(len, 0x1000));
 }
 
 void MemorySpace::read(Address addr, void* buf, size_t len)

@@ -17,8 +17,8 @@
 #include <mutex>
 
 #include "cxxopts.hpp"
-#include "spdlog/cfg/env.h"
-#include "spdlog/spdlog.h"
+#include <spdlog/cfg/env.h>
+#include <spdlog/spdlog.h>
 
 #define DEFAULT_FILE_SIZE (4UL << 30)
 
@@ -695,7 +695,7 @@ static void mfs_unlink(fuse_req_t req, fuse_ino_t parent, const char* name)
     fuse_reply_err(req, res == -1 ? errno : 0);
 }
 
-#define roundup(x, align) \
+#define my_roundup(x, align) \
     (((x) % align == 0) ? (x) : (((x) + align) - ((x) % align)))
 
 static void ensure_io_thread()
@@ -728,7 +728,7 @@ static void mfs_read(fuse_req_t req, fuse_ino_t ino, size_t size, off_t off,
     size_t buf_size = size;
     off -= block_off;
     buf_size += block_off;
-    buf_size = roundup(buf_size, 0x1000UL);
+    buf_size = my_roundup(buf_size, 0x1000UL);
 
     MemorySpace::Address buf;
 
@@ -773,7 +773,7 @@ static void mfs_write(fuse_req_t req, fuse_ino_t ino, const char* buf,
     size_t buf_size = size;
     off -= block_off;
     buf_size += block_off;
-    buf_size = roundup(buf_size, 0x1000UL);
+    buf_size = my_roundup(buf_size, 0x1000UL);
 
     // TODO: handle read-modify-write
 

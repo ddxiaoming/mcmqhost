@@ -14,8 +14,8 @@ set(EXT_SOURCE_FILES
 include_directories(${PROTOBUF_INCLUDE_DIRS})
 
 set(LIBRARIES    
-    CONAN_PKG::spdlog
-    CONAN_PKG::yaml-cpp
+    spdlog::spdlog
+    yaml-cpp
     CONAN_PKG::nlohmann_json
     CONAN_PKG::hdrhistogram-c    
     ${PROTOBUF_LIBRARIES}    

@@ -9,7 +9,7 @@ set(SOURCE_FILES
 set(LIBRARIES
     pthread
     atomic
-    CONAN_PKG::spdlog
+    spdlog::spdlog
 )
 
 ADD_LIBRARY(unvme STATIC ${SOURCE_FILES})

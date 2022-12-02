@@ -1,7 +1,5 @@
 [requires]
-spdlog/[>=1.4.1]
 cxxopts/[>=2.2.0]
-yaml-cpp/0.6.3
 nlohmann_json/3.9.1
 hdrhistogram-c/0.11.1
 
@@ -9,4 +7,3 @@ hdrhistogram-c/0.11.1
 cmake
 
 [options]
-spdlog:shared = True
